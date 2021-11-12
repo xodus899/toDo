@@ -1,4 +1,4 @@
-# toDo
+# To Do List
 
 To run locally:
   - clone repository
