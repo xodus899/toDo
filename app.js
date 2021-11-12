@@ -5,8 +5,10 @@ const getDate = require(__dirname + '/public/javascript/date.js');
 const app = express();
 const port = 5000;
 
+console.log(getDate)
+
 //global arr to have access to display input.
-let userInputtedArr = [];
+const userInputtedArr = [];
 // allows you to parse body to view like json
 app.use(bodyParser.urlencoded({extended:true}));
 // access to static files in public route
@@ -17,7 +19,7 @@ app.set('view engine','ejs');
 
 //get home route
 app.get('/', (request,response) => {
-    let day = getDate();
+    const day = getDate.currentDate();
         //render file called list in views folder
         // whatDay is the ejs var, day is variable to access module for getDate js.
     response.render('list', {whatDay : day, newListItems : userInputtedArr });
@@ -25,7 +27,7 @@ app.get('/', (request,response) => {
 
 app.post('/', (request,response) => {
   // save user input
-  let userInputted = request.body.addtoDoInput;
+  const userInputted = request.body.addtoDoInput;
   //push into global array to have access for scope
   userInputtedArr.push(userInputted);
   // redirect back to home route, to show results in the render 'list from get'.
