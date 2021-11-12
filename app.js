@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// require module in js folder
+const getDate = require(__dirname + '/public/javascript/date.js');
 const app = express();
 const port = 5000;
 
@@ -15,19 +17,9 @@ app.set('view engine','ejs');
 
 //get home route
 app.get('/', (request,response) => {
-    //get date
-    let today = new Date();
-    // set options to show date options dynamically.
-    let options = {
-      weekday: "long",
-      day: "numeric",
-      month: "long"
-    };
-    // set day to return string portion of date
-    let day = today.toLocaleDateString("en-US", options)
-
-    //render file called list in views folder
-    // in listfile kindOfDay is the ejs var in html, and will have the value of variable day in app.js.
+    let day = getDate();
+        //render file called list in views folder
+        // whatDay is the ejs var, day is variable to access module for getDate js.
     response.render('list', {whatDay : day, newListItems : userInputtedArr });
 });
 
