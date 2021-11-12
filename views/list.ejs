@@ -1,0 +1,24 @@
+    <%- include('header') -%>
+    <!-- sciptlet tag run basic js, if/else/loop <% %> -->
+    <div class='box'>
+      <h1 id='heading'> <%= whatDay %></h1>
+      <h3> To-Do List </h3>
+    </div>
+    <!-- comes from post request of form, saves into addtoDoInput, logic in app.js -->
+    <div class='box'>
+      <% newListItems.forEach((item) => { %>
+        <% if (!item) { %>
+
+        <%} else {%>
+          <div class = "item">
+            <input type="checkbox">
+            <p> <%= item %> </p>
+          </div>
+        <%}%>
+      <%})%>
+      <form action="/" method="post">
+        <input type="text" name="addtoDoInput" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="button">+</button>
+      </form>
+    </div>
+    <%- include('footer') -%>
