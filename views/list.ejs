@@ -7,18 +7,19 @@
     <!-- comes from post request of form, saves into addtoDoInput, logic in app.js -->
     <div class='box'>
       <% newListItems.forEach((item) => { %>
-        <% if (!item) { %>
-
-        <%} else {%>
-          <div class = "item">
-            <input type="checkbox">
-            <p> <%= item %> </p>
-          </div>
-        <%}%>
+        <form action="/delete" method="post">
+            <div class = "item">
+              <input type="checkbox" name="checkbox" onChange="this.form.submit()" value="<%=item._id %>">
+              <p> <%= item.name %> </p>
+            </div>
+            <input type="hidden" name="checkList"  value="<%= whatDay %>">
+        </form>
       <%})%>
-      <form action="/" method="post">
-        <input type="text" name="addtoDoInput" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="button">+</button>
+
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="addtoDoInput" placeholder="Add Item" autocomplete="off" autofocus>
+        <button type="submit" name="list" value="<%= whatDay %>">+</button>
       </form>
     </div>
     <%- include('footer') -%>
